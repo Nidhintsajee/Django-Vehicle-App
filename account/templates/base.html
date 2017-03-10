@@ -1,0 +1,52 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title style="font-size:300%;color:#FFFF00;">{% block title %}Vehicle App{% endblock %}</title>
+
+</head>
+<body <a style="color: #33CCFF ;font-size:25px; background-image:url('http://images.mazdausa.com/MusaWeb/musa2/images/vlp/panels/MXR/exterior-view/background.jpg')"/>
+  <a style="color:#99FF00;font-size:150%;"href="https://github.com/Nidhintsajee/Django-Vehicle-App.git">GitHub repository</a>
+  <div id="header">
+     <a href="/" class="logo" style="font-size:300%;color:#FFFF00;">vehicle App</a>
+       {% if request.user.is_authenticated %}
+    <ul class="menu">
+      <li {% if section == "new vehicle" %}class="selected"{% endif %}>
+    <a style="color:#FF9900 ;font-size:25px" href="{% url "vehicle:add_vehicle" %}">vehicle new</a>
+     </li>
+      <li {% if section == "dashboard" %}class="selected"{% endif %}>
+        <a style="color:#FF9900 ;font-size:25px" href="{% url "dashboard" %}">My dashboard</a>
+      </li>
+
+
+    </ul>
+  {% endif %}
+
+  <span style="color: 	#00ff80" class="user">
+    {% if request.user.is_authenticated %}
+
+      Hello {{ request.user.first_name }},
+      <a style="color: #00FF00" href="{% url "logout_then_login" %}">Logout</a>
+    {% else %}
+      <a style="color: #00FF00" href="{% url "login" %}">Log-in</a>
+    {% endif %}
+  </span>
+  </div>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">
+        {{ message|safe }}
+          <a href="#" class="close">✖</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>
+

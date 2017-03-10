@@ -4,7 +4,7 @@ from django.db import models
 import os.path
 from django.utils import timezone
 from PIL import Image
-from cStringIO import StringIO
+from io import StringIO, BytesIO
 from django.core.files.uploadedfile import SimpleUploadedFile
 # Create your models here.
 
@@ -29,7 +29,7 @@ class PostsSubmit(models.Model):
         return self.vehicle_no
 
     def save(self, force_update=False, force_insert=False, thumb_size=(180, 300)):
-        vehicle_image = Image.open(self.product_image)
+        vehicle_image = Image.open(self.vehicle_image)
 
         if vehicle_image.mode not in ('L', 'RGB'):
             product_image = vehicle_image.convert('RGB')
@@ -41,6 +41,7 @@ class PostsSubmit(models.Model):
 
         # save the thumbnail to memory
         temp_handle = StringIO()
+        temp_handle = BytesIO()
         vehicle_image.save(temp_handle, 'png')
         temp_handle.seek(0)  # rewind the file
 

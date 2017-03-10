@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+</div>
+
+    <ul>
+    {% csrf_token %}
+    {% for vehicle in List %}
+       <div>
+	</ul>
+       <img src= "{{ vehicle.thumbnail.url}}">
+	<p> <li><a href="/vehicle/{{vehicle.id}}"> {{ vehicle.vehicle_no }} {{ vehicle.type }}</a> </li></p>
+       </div>
+    {% endfor %}
+{% endblock %}

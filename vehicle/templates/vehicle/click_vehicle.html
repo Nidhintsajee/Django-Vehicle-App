@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+<div>
+{% block content %}
+
+</div>
+
+    <ul>
+    {% csrf_token %}
+	<div>
+	<h2> <li> {{ obj.title }} </li></h2>
+       <img src= "{{ obj.vehicle_image.url}}">
+	<p>{{obj.vehicle_no}}
+        {{obj.type}}</p></div>
+    </ul>
+        {% endblock %}

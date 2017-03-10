@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<h1 style="font-family:utopia;font-size:200%;color:white;">Add your Vehicle</h1>
+	<a href="{% url 'logout' %}">LOGOUT</a>
+	<a href="{% url "vehicle:vehicle_display" %}">See all vehicles</a>
+        <form id="vehicle_form" method="post" action="/vehicle/save_vehicle/"enctype="multipart/form-data">
+
+            {% csrf_token %}
+             {{ form.as_p }}
+               <div>
+		</div>
+
+
+            <input type="submit" name="submit" value="Submit" />
+        </form>
+  {% endblock %}
