@@ -18,6 +18,9 @@
       <li {% if section == "dashboard" %}class="selected"{% endif %}>
         <a style="color:#FF9900 ;font-size:25px" href="{% url "dashboard" %}">My dashboard</a>
       </li>
+        <li {% if section == "vehicles" %}class="selected"{% endif %}>
+        <a style="color:#FF9900 ;font-size:25px" href="{% url "vehicle:vehicle_display" %}">vehicles</a>
+      </li>
 
 
     </ul>
